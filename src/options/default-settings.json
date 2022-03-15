@@ -1,0 +1,12 @@
+{
+    "MAX_RISK": 1,
+    "TAKER_FEE": 0.02,
+    "MAKER_FEE": 0.04,
+    "PORTFOLIO_PERCENTAGE": 100,
+    "ENTRY_ORDER_TYPE": "limit",
+    "TP_ORDER_TYPE": "limit",
+    "SL_ORDER_TYPE": "market",
+    "IS_EXTENSION_ACTIVE": true,    
+    "IS_HIDE_PNL": false,
+    "IS_LOGGER_ACTIVE": true
+  }
