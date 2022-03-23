@@ -71,6 +71,10 @@ Have in mind that the position calculator **only works when the TP/SL checkbox i
 
 - hides the current PNL in Active positions tab. Have in mind that the PNL might still be shown on the chart, if using TradingView charts
 
+**Prevent market buy without SL**
+
+- Prevents you from executing a Market order if the Stop Loss is not defined
+
 **Logger window ON/OFF**
 
 - the yellow log window with calculation details can be be hidden, but the position size will still be set automatically
