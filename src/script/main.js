@@ -95,7 +95,10 @@
 
     function buySellOnClick(e) {
       setMarketPosSize();
-      if (!helpers.isNumber(parseFloat(slInput.value))) {
+      if (
+        _SETTINGS.IS_PREVENT_MARKET_BUY_WITHOUT_SL &&
+        !helpers.isNumber(parseFloat(slInput.value))
+      ) {
         e.preventDefault();
         dialog.open("NO STOP LOSS NO TRADE!");
       }

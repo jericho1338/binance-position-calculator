@@ -8,5 +8,6 @@
     "SL_ORDER_TYPE": "market",
     "IS_EXTENSION_ACTIVE": true,    
     "IS_HIDE_PNL": false,
-    "IS_LOGGER_ACTIVE": true
+    "IS_LOGGER_ACTIVE": true,
+    "IS_PREVENT_MARKET_BUY_WITHOUT_SL": true
   }

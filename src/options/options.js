@@ -35,12 +35,18 @@
     setRadioVal("rb-tp", values.TP_ORDER_TYPE);
     setRadioVal("rb-sl", values.SL_ORDER_TYPE);
 
+    setInputVal(
+      "is-prevent-mb-wo-sl",
+      values.IS_PREVENT_MARKET_BUY_WITHOUT_SL,
+      true
+    );
     setInputVal("is-hide-pnl", values.IS_HIDE_PNL, true);
     setInputVal("is-logger-active", values.IS_LOGGER_ACTIVE, true);
   }
 
   function getFormValues() {
     return {
+      IS_EXTENSION_ACTIVE: getInputVal("is-extension-active", true),
       MAX_RISK: getInputVal("max-risk"),
       TAKER_FEE: getInputVal("taker-fee"),
       MAKER_FEE: getInputVal("maker-fee"),
@@ -50,7 +56,10 @@
       TP_ORDER_TYPE: getRadioVal("rb-tp"),
       SL_ORDER_TYPE: getRadioVal("rb-sl"),
 
-      IS_EXTENSION_ACTIVE: getInputVal("is-extension-active", true),
+      IS_PREVENT_MARKET_BUY_WITHOUT_SL: getInputVal(
+        "is-prevent-mb-wo-sl",
+        true
+      ),
       IS_HIDE_PNL: getInputVal("is-hide-pnl", true),
       IS_LOGGER_ACTIVE: getInputVal("is-logger-active", true),
     };
