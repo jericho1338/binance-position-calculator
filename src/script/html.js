@@ -201,7 +201,7 @@ const appendNewStyleSheet = () => {
 };
 
 const hidePnl = () => {
-  const sheet = html.appendNewStyleSheet();
+  const sheet = appendNewStyleSheet();
   sheet.insertRule(`.pnl { visibility: hidden }`, 0);
 };
 
@@ -309,6 +309,46 @@ const getBalanceFromHtml = () => {
     : 0;
 };
 
+// popup code from : https://html-online.com/articles/simple-popup-box/
+// prettier-ignore
+const initDialog = () => {
+  const template = `
+  <div class="hover_bkgr_fricc">
+   <span class="helper"></span>
+    <div>
+      <div class="popupCloseButton">&times;</div>
+      <b><p class="dialogText"></p></b>
+    </div>
+  </div>
+  `;
+  const dialog = stringToHtml(template);
+  document.body.append(dialog);
+
+  const dialogCss = appendNewStyleSheet();
+  dialogCss.insertRule(`.hover_bkgr_fricc { background: #000; opacity:0.85; cursor: pointer; display: none; height: 100%; position: fixed; text-align: center; top: 0; width: 100%; z-index: 10000; }`, 0);
+  dialogCss.insertRule(`.hover_bkgr_fricc .helper { display: inline-block; height: 100%; vertical-align: middle; }`, 0);
+  dialogCss.insertRule(`.hover_bkgr_fricc > div { background-color: #fff; box-shadow: 10px 10px 60px #555; display: inline-block; height: auto; max-width: 551px; vertical-align: middle; width: 60%; position: relative; border-radius: 8px; padding: 15px 5%; }`, 0);
+  dialogCss.insertRule(`.popupCloseButton { background-color: #fff; border: 3px solid #999; border-radius: 50px; cursor: pointer; display: inline-block; font-family: arial; font-weight: bold; position: absolute; top: -20px; right: -20px; font-size: 25px; line-height: 30px; width: 30px; height: 30px; text-align: center; }`, 0);
+  dialogCss.insertRule(`.popupCloseButton:hover { background-color: #ccc; }`, 0);
+
+  const background = document.querySelector(".hover_bkgr_fricc");
+  const closeBtn = document.querySelector(".popupCloseButton");
+
+  background.addEventListener("click", close);
+  closeBtn.addEventListener("click", close);
+
+  function close() {
+    background.style.display = "none";
+  }
+
+  function open(text) {
+    background.querySelector(".dialogText").innerHTML = text || "";
+    background.style.display = "block";
+  }
+
+  return { close, open };
+};
+
 export {
   observeHtml,
   appendNewStyleSheet,
@@ -317,4 +357,5 @@ export {
   logToWindow,
   setInputValue,
   getBalanceFromHtml,
+  initDialog,
 };

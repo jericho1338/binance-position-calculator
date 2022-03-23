@@ -17,6 +17,7 @@
 
   let _SETTINGS = {};
   let priceObserver = undefined;
+  let dialog = html.initDialog();
 
   // listening for changes on settings
   chrome.storage.onChanged.addListener(() => {
@@ -95,8 +96,8 @@
     function buySellOnClick(e) {
       setMarketPosSize();
       if (!helpers.isNumber(parseFloat(slInput.value))) {
-        alert("NO STOP LOSS NO TRADE!");
         e.preventDefault();
+        dialog.open("NO STOP LOSS NO TRADE!");
       }
     }
   }
