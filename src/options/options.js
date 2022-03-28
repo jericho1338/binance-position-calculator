@@ -26,6 +26,7 @@
 
   function setFormValues(values) {
     setInputVal("is-extension-active", values.IS_EXTENSION_ACTIVE, true);
+    setInputVal("is-set-pos-size", values.IS_SET_POS_SIZE, true);
     setInputVal("max-risk", values.MAX_RISK);
     setInputVal("taker-fee", values.TAKER_FEE);
     setInputVal("maker-fee", values.MAKER_FEE);
@@ -47,6 +48,7 @@
   function getFormValues() {
     return {
       IS_EXTENSION_ACTIVE: getInputVal("is-extension-active", true),
+      IS_SET_POS_SIZE: getInputVal("is-set-pos-size", true),
       MAX_RISK: getInputVal("max-risk"),
       TAKER_FEE: getInputVal("taker-fee"),
       MAKER_FEE: getInputVal("maker-fee"),

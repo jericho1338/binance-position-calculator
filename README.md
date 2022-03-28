@@ -39,6 +39,10 @@ Have in mind that the position calculator **only works when the TP/SL checkbox i
 
 - Turning the extension ON or OFF
 
+**Set position size automatically**
+
+- Set the position size automatically into the position size input field. If turned off, calculation will be logged only onto the log window (if the Logger window setting is turned ON)
+
 **Max risk (on a trade) %**
 
 - maximum percentage risk on each trade - percent values used

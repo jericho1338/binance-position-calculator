@@ -142,6 +142,7 @@
     let tFee = _SETTINGS.TAKER_FEE;
     let portfolioPercentage = _SETTINGS.PORTFOLIO_PERCENTAGE;
     let isLogger = _SETTINGS.IS_LOGGER_ACTIVE;
+    let isSetPosSize = _SETTINGS.IS_SET_POS_SIZE;
 
     let entryOrderType = _SETTINGS.ENTRY_ORDER_TYPE;
     let tpOrderType = _SETTINGS.TP_ORDER_TYPE;
@@ -179,7 +180,7 @@
       ? entry * data.maxPosSize
       : data.maxPosSize;
 
-    if (helpers.isNumber(data.maxPosSize)) {
+    if (isSetPosSize && helpers.isNumber(data.maxPosSize)) {
       html.setInputValue(posSizeInput, posSize);
     }
 
