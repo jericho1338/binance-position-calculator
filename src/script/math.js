@@ -61,3 +61,9 @@ export const calculatePosSize = (
     return type === "market" ? makerFeeConst : takerFeeConst;
   }
 };
+
+
+export const calculateTargetPrice = (rrRatio, stopLoss, entry) => {
+	const targetPrice = entry + (entry - stopLoss) * rrRatio;
+	return targetPrice;
+}
