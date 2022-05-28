@@ -1,185 +1,161 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Binance position calculator</title>
-    <link rel="stylesheet" href="options.css" />
-  </head>
-  <body>
-    <table>
-      <tr>
-        <td>Extension ON / OFF</td>
-        <td>
-          <input
-            type="checkbox"
-            id="is-extension-active"
-            class="switch-input"
-          />
-          <label for="is-extension-active" class="switch-label"
-            ><span class="toggle--on">ON</span
-            ><span class="toggle--off">OFF</span>
-          </label>
-        </td>
-      </tr>
 
-      <tr>
-        <td>Set position size automatically</td>
-        <td>
-          <input
-            type="checkbox"
-            id="is-set-pos-size"
-            class="switch-input"
-          />
-          <label for="is-set-pos-size" class="switch-label"
-            ><span class="toggle--on">ON</span
-            ><span class="toggle--off">OFF</span>
-          </label>
-        </td>
-      </tr>
+<head>
+	<meta charset="UTF-8" />
+	<title>Binance position calculator</title>
+	<link rel="stylesheet" href="options.css" />
+</head>
 
-      <tr>
-        <td>Max risk (on a trade) %</td>
-        <td>
-          <input
-            placeholder="MAX RISK e.g. 0.02"
-            id="max-risk"
-            type="number"
-          />
-        </td>
-      </tr>
-      <tr>
-        <td>Taker fee %</td>
-        <td>
-          <input
-            placeholder="e.g. 0.0002"
-            step="0.01"
-            id="taker-fee"
-            type="number"
-          />
-        </td>
-      </tr>
-      <tr>
-        <td>Maker fee %</td>
-        <td>
-          <input
-            placeholder="e.g. 0.0004"
-            step="0.01"
-            id="maker-fee"
-            type="number"
-          />
-        </td>
-      </tr>
-      <tr>
-        <td>Portfolio % on exchange</td>
-        <td>
-          <input
-            placeholder="Percentage e.g. 10"
-            id="portfolio-percentage"
-            type="number"
-          />
-        </td>
-      </tr>
+<body>
+	<table>
+		<tr>
+			<td>Extension ON / OFF</td>
+			<td>
+				<input type="checkbox" id="is-extension-active" class="switch-input" />
+				<label for="is-extension-active" class="switch-label"><span class="toggle--on">ON</span><span
+						class="toggle--off">OFF</span>
+				</label>
+			</td>
+		</tr>
 
+		<tr>
+			<td>Set position size automatically</td>
+			<td>
+				<input type="checkbox" id="is-set-pos-size" class="switch-input" />
+				<label for="is-set-pos-size" class="switch-label"><span class="toggle--on">ON</span><span
+						class="toggle--off">OFF</span>
+				</label>
+			</td>
+		</tr>
 
-      <tr>
-        <td>Entry order type</td>
-        <td>
-          
-          <div class="radio">
-            <div class="group">
-              <input type="radio" name="rb-entry" id="entry-order-type-market" value="market" />
-              <label for="entry-order-type-market">Market</label>
-              <input type="radio" name="rb-entry" id="entry-order-type-limit" value="limit" />
-              <label for="entry-order-type-limit">Limit</label>
-            </div>
-          </div>
-            
-        </td>
-      </tr>      
+		<tr>
+			<td>Set take profit price automatically (based on RR)</td>
+			<td>
+				<input type="checkbox" id="is-set-auto-tp" class="switch-input" />
+				<label for="is-set-auto-tp" class="switch-label"><span class="toggle--on">ON</span><span
+						class="toggle--off">OFF</span>
+				</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>Max risk (on a trade) %</td>
+			<td>
+				<input placeholder="MAX RISK e.g. 0.02" id="max-risk" type="number" />
+			</td>
+		</tr>
+		<tr>
+			<td>Taker fee %</td>
+			<td>
+				<input placeholder="e.g. 0.0002" step="0.01" id="taker-fee" type="number" />
+			</td>
+		</tr>
+		<tr>
+			<td>Maker fee %</td>
+			<td>
+				<input placeholder="e.g. 0.0004" step="0.01" id="maker-fee" type="number" />
+			</td>
+		</tr>
+		<tr>
+			<td>Portfolio % on exchange</td>
+			<td>
+				<input placeholder="Percentage e.g. 10" id="portfolio-percentage" type="number" />
+			</td>
+		</tr>
+
+		<tr>
+			<td>Reward to risk ratio</td>
+			<td>
+				<input placeholder="Fraction e.g. 2 for 2/1" id="rr-ratio" type="number" />
+			</td>
+		</tr>
+
+		<tr>
+			<td>Entry order type</td>
+			<td>
+
+				<div class="radio">
+					<div class="group">
+						<input type="radio" name="rb-entry" id="entry-order-type-market" value="market" />
+						<label for="entry-order-type-market">Market</label>
+						<input type="radio" name="rb-entry" id="entry-order-type-limit" value="limit" />
+						<label for="entry-order-type-limit">Limit</label>
+					</div>
+				</div>
+
+			</td>
+		</tr>
 
 
-      <tr>
-        <td>Take profit order type</td>
-        <td>
-          
-          <div class="radio">
-            <div class="group">
-              <input type="radio" name="rb-tp" id="tp-order-type-market" value="market" />
-              <label for="tp-order-type-market">Market</label>
-              <input type="radio" name="rb-tp" id="tp-order-type-limit" value="limit" />
-              <label for="tp-order-type-limit">Limit</label>
-            </div>
-          </div>
-            
-        </td>
-      </tr>      
+		<tr>
+			<td>Take profit order type</td>
+			<td>
+
+				<div class="radio">
+					<div class="group">
+						<input type="radio" name="rb-tp" id="tp-order-type-market" value="market" />
+						<label for="tp-order-type-market">Market</label>
+						<input type="radio" name="rb-tp" id="tp-order-type-limit" value="limit" />
+						<label for="tp-order-type-limit">Limit</label>
+					</div>
+				</div>
+
+			</td>
+		</tr>
 
 
-      <tr>
-        <td>Stop loss order type</td>
-        <td>
-          
-          <div class="radio">
-            <div class="group">
-              <input type="radio" name="rb-sl" id="sl-order-type-market" value="market" />
-              <label for="sl-order-type-market">Market</label>
-              <input type="radio" name="rb-sl" id="sl-order-type-limit" value="limit" />
-              <label for="sl-order-type-limit">Limit</label>
-            </div>
-          </div>
-            
-        </td>
-      </tr>      
+		<tr>
+			<td>Stop loss order type</td>
+			<td>
+
+				<div class="radio">
+					<div class="group">
+						<input type="radio" name="rb-sl" id="sl-order-type-market" value="market" />
+						<label for="sl-order-type-market">Market</label>
+						<input type="radio" name="rb-sl" id="sl-order-type-limit" value="limit" />
+						<label for="sl-order-type-limit">Limit</label>
+					</div>
+				</div>
+
+			</td>
+		</tr>
 
 
-      <tr>
-        <td>Hide PNL on active position</td>
-        <td>
-          <input
-            type="checkbox"
-            id="is-hide-pnl"
-            class="switch-input"
-          />
-          <label for="is-hide-pnl" class="switch-label"
-            ><span class="toggle--on">ON</span
-            ><span class="toggle--off">OFF</span>
-          </label>
-        </td>
-      </tr>
+		<tr>
+			<td>Hide PNL on active position</td>
+			<td>
+				<input type="checkbox" id="is-hide-pnl" class="switch-input" />
+				<label for="is-hide-pnl" class="switch-label"><span class="toggle--on">ON</span><span
+						class="toggle--off">OFF</span>
+				</label>
+			</td>
+		</tr>
 
-      <tr>
-        <td>Prevent market buy without SL</td>
-        <td>
-          <input
-            type="checkbox"
-            id="is-prevent-mb-wo-sl"
-            class="switch-input"
-          />
-          <label for="is-prevent-mb-wo-sl" class="switch-label"
-            ><span class="toggle--on">ON</span
-            ><span class="toggle--off">OFF</span>
-          </label>
-        </td>
-      </tr>
+		<tr>
+			<td>Prevent market buy without SL</td>
+			<td>
+				<input type="checkbox" id="is-prevent-mb-wo-sl" class="switch-input" />
+				<label for="is-prevent-mb-wo-sl" class="switch-label"><span class="toggle--on">ON</span><span
+						class="toggle--off">OFF</span>
+				</label>
+			</td>
+		</tr>
 
-      <tr>
-        <td>Logger window ON / OFF</td>
-        <td>
-          <input
-            type="checkbox"
-            id="is-logger-active"
-            class="switch-input"
-          />
-          <label for="is-logger-active" class="switch-label"
-            ><span class="toggle--on">ON</span
-            ><span class="toggle--off">OFF</span>
-          </label>
-        </td>
-      </tr>
+		<tr>
+			<td>Logger window ON / OFF</td>
+			<td>
+				<input type="checkbox" id="is-logger-active" class="switch-input" />
+				<label for="is-logger-active" class="switch-label"><span class="toggle--on">ON</span><span
+						class="toggle--off">OFF</span>
+				</label>
+			</td>
+		</tr>
 
-    </table>
-    <button id="save" class="btn">Save</button>
-    <div id="status"></div>
-    <script src="options.js"></script>
-  </body>
+	</table>
+	<button id="save" class="btn">Save</button>
+	<div id="status"></div>
+	<script src="options.js"></script>
+</body>
+
 </html>

@@ -50,12 +50,15 @@
         initMarketCalculator();
         initDOMLastPriceObserver();
       }
+
+	  if(isStopLossLoaded)
+	  	html.initAutoTPCheckbox(isStopLossLoaded, _SETTINGS);
     }
   }
 
   function initDOMLastPriceObserver() {
     priceObserver = new MutationObserver((mutations) => {
-      mutations[0].type == "characterData" && setMarketPosSize();
+      mutations[0].type == "characterData" && setMarketPosAndTP();
     });
 
     priceObserver.observe(document.querySelector(LAST_PRICE_QUERY), {
@@ -73,6 +76,12 @@
     html.removeLogWindow();
   }
 
+  function setMarketPosAndTP() {
+	setMarketPosSize();
+	if(_SETTINGS.IS_SET_AUTO_TP)
+		setTakeProfit(false);
+  }
+
   function initMarketCalculator() {
     let slInput = document.querySelector(STOP_LOSS_QUERY);
     let tpInput = document.querySelector(TAKE_PROFIT_QUERY);
@@ -84,17 +93,17 @@
       (b) => b.innerText === "Sell/Short"
     );
 
-    slInput.addEventListener("keyup", setMarketPosSize);
+    slInput.addEventListener("keyup", setMarketPosAndTP);
     tpInput.addEventListener("keyup", setMarketPosSize);
 
     buyMarketBtn.onclick = buySellOnClick;
     sellMarketBtn.onclick = buySellOnClick;
 
     // run initial calculation if we change plugin settings during the trade
-    setMarketPosSize();
+    setMarketPosAndTP()
 
     function buySellOnClick(e) {
-      setMarketPosSize();
+		setMarketPosAndTP();
       if (
         _SETTINGS.IS_PREVENT_MARKET_BUY_WITHOUT_SL &&
         !helpers.isNumber(parseFloat(slInput.value))
@@ -111,6 +120,12 @@
     setPosSizeInput(unitOfMeasure, entry);
   }
 
+  function setLimitPosAndTP() {
+	setLimitPosSize();
+	if(_SETTINGS.IS_SET_AUTO_TP)
+		setTakeProfit(true);
+  }
+
   function initLimitCalculator() {
     let lastPriceBtn = Array.from(
       document
@@ -121,13 +136,13 @@
     let slInput = document.querySelector(STOP_LOSS_QUERY);
     let tpInput = document.querySelector(TAKE_PROFIT_QUERY);
 
-    entryInput.addEventListener("keyup", setLimitPosSize);
-    slInput.addEventListener("keyup", setLimitPosSize);
+    entryInput.addEventListener("keyup", setLimitPosAndTP);
+    slInput.addEventListener("keyup", setLimitPosAndTP);
     tpInput.addEventListener("keyup", setLimitPosSize);
-    lastPriceBtn.addEventListener("click", setLimitPosSize);
+    lastPriceBtn.addEventListener("click", setLimitPosAndTP);
 
     // run initial calc if we change settings during the trade
-    setLimitPosSize();
+    setLimitPosAndTP();
   }
 
   function setLimitPosSize() {
@@ -187,5 +202,17 @@
     if (isLogger) {
       html.logToWindow(data, posSize);
     }
+  }
+
+  function setTakeProfit(isLimit) {
+	let entry = parseFloat(
+		isLimit ? document.querySelector(INPUT_PRICE_QUERY).value
+		: document.querySelector(LAST_PRICE_QUERY).innerText
+	);
+	let stopLoss = parseFloat(document.querySelector(STOP_LOSS_QUERY).value);
+	let targetInput = document.querySelector(TAKE_PROFIT_QUERY);
+	let targetPrice = math.calculateTargetPrice(_SETTINGS.RR_RATIO, stopLoss, entry);
+	if(helpers.isNumber(targetPrice))
+		html.setInputValue(targetInput, targetPrice);
   }
 })();
