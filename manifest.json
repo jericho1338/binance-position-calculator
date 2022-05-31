@@ -10,17 +10,11 @@
     "128": "icons/binance_128.png"
   },
   "default_locale": "en",
-  "permissions": [
-    "storage"
-  ],
+  "permissions": ["storage"],
   "content_scripts": [
     {
-      "matches": [
-        "https://www.binance.com/*"
-      ],
-      "js": [
-        "src/script/main.js"
-      ],
+      "matches": ["https://www.binance.com/*"],
+      "js": ["src/script/main.js"],
       "run_at": "document_end"
     }
   ],
@@ -33,9 +27,7 @@
         "src/script/helpers.js",
         "src/script/settings.js"
       ],
-      "matches": [
-        "<all_urls>"
-      ]
+      "matches": ["<all_urls>"]
     }
   ],
   "action": {
